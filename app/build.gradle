@@ -9,7 +9,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BASE_URL", "https://api.themoviedb.org/"
+        buildConfigField "String", "BASE_URL", '"https://api.themoviedb.org/"'
+        buildConfigField "String", "API_KEY", '"e2f0a4994f340154ff8b31c65f8f9c5e"'
     }
     buildTypes {
         release {
@@ -33,6 +34,8 @@ dependencies {
     //rxjava-rxandroid
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+    implementation 'com.google.code.gson:gson:2.8.5'
 
     //other libs
     implementation 'com.squareup.picasso:picasso:2.71828'
