@@ -2,6 +2,7 @@ package com.studio.karya.submission4.menu.activity;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -68,13 +69,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //todo something
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_toolbar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //todo something
+        switch (item.getItemId()) {
+            case R.id.action_language:
+                //do something good
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 }

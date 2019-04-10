@@ -6,4 +6,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="change_langauge">change langauge</string>
+    <string name="img_poster">img_poster</string>
+    <string name="release_date">Release Date</string>
+    <string name="first_air_date">First Air Date</string>
 </resources>

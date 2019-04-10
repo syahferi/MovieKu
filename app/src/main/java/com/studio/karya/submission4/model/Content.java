@@ -37,6 +37,86 @@ public class Content implements Parcelable {
     @SerializedName("first_air_date")
     private String firstAirDateTv;
 
+    public String getTitleTv() {
+        return titleTv;
+    }
+
+    public void setTitleTv(String titleTv) {
+        this.titleTv = titleTv;
+    }
+
+    public String getVoteCount() {
+        return voteCount;
+    }
+
+    public void setVoteCount(String voteCount) {
+        this.voteCount = voteCount;
+    }
+
+    public String getVoteAverage() {
+        return voteAverage;
+    }
+
+    public void setVoteAverage(String voteAverage) {
+        this.voteAverage = voteAverage;
+    }
+
+    public String getTitleFilm() {
+        return titleFilm;
+    }
+
+    public void setTitleFilm(String titleFilm) {
+        this.titleFilm = titleFilm;
+    }
+
+    public String getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(String popularity) {
+        this.popularity = popularity;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public String getBackdropPath() {
+        return backdropPath;
+    }
+
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public String getFirstAirDateTv() {
+        return firstAirDateTv;
+    }
+
+    public void setFirstAirDateTv(String firstAirDateTv) {
+        this.firstAirDateTv = firstAirDateTv;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -59,7 +139,7 @@ public class Content implements Parcelable {
     public Content() {
     }
 
-    protected Content(Parcel in) {
+    private Content(Parcel in) {
         this.titleTv = in.readString();
         this.voteCount = in.readString();
         this.voteAverage = in.readString();
