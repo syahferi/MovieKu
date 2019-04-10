@@ -1,6 +1,7 @@
 package com.studio.karya.submission4.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.studio.karya.submission4.R;
+import com.studio.karya.submission4.menu.activity.DetailActivity;
 import com.studio.karya.submission4.model.Content;
 import com.studio.karya.submission4.utils.ConvertDate;
 import com.studio.karya.submission4.utils.CustomOnItemClick;
@@ -24,11 +26,11 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
     private ArrayList<Content> listContent = new ArrayList<>();
     private Activity activity;
-    private String TYPE;
+    private String type;
 
-    public ContentAdapter(Activity activity, String TYPE) {
+    public ContentAdapter(Activity activity, String type) {
         this.activity = activity;
-        this.TYPE = TYPE;
+        this.type = type;
     }
 
     public ArrayList<Content> getListContent() {
@@ -36,10 +38,10 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     }
 
     public void setListContent(ArrayList<Content> listContent) {
+
         if (listContent.size() > 0) {
             this.listContent = listContent;
         }
-        this.listContent.addAll(listContent);
         notifyDataSetChanged();
     }
 
@@ -58,7 +60,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
 
         ConvertDate convertDate = new ConvertDate();
 
-        if (TYPE.equals("movie")) {
+        if (type.equals("movie")) {
             holder.tvTitle.setText(listContent.get(position).getTitleFilm());
             holder.tvTitleDate.setText(activity.getString(R.string.release_date));
             holder.tvDate.setText(convertDate.date(listContent.get(position).getReleaseDate()));
@@ -77,7 +79,10 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
         holder.itemView.setOnClickListener(new CustomOnItemClick(position, new CustomOnItemClick.OnItemClickCallback() {
             @Override
             public void onItemClicked(View view, int position) {
-
+                Intent intent = new Intent(activity, DetailActivity.class);
+                intent.putExtra(DetailActivity.DATA, listContent.get(position));
+                intent.putExtra(DetailActivity.TYPE, type);
+                activity.startActivity(intent);
             }
         }));
     }

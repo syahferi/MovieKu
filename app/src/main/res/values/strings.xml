@@ -10,4 +10,8 @@
     <string name="img_poster">img_poster</string>
     <string name="release_date">Release Date</string>
     <string name="first_air_date">First Air Date</string>
+    <string name="img_backdrop">img_backdrop</string>
+    <string name="title_popularity">Popularity</string>
+    <string name="vote_count">Vote Count</string>
+    <string name="vote_average">Vote Average</string>
 </resources>
