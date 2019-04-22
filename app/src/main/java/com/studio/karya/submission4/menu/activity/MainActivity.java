@@ -1,18 +1,22 @@
 package com.studio.karya.submission4.menu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.studio.karya.submission4.R;
 import com.studio.karya.submission4.menu.fragment.content.ContentFragment;
-import com.studio.karya.submission4.menu.fragment.fav.FavFragment;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import com.studio.karya.submission4.menu.fragment.fav.FavContainerFragment;
+import com.studio.karya.submission4.menu.fragment.fav.MovieFavFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ContentFragment contentFragment = new ContentFragment();
-        final FavFragment favFragment = new FavFragment();
+        final FavContainerFragment favFragment = new FavContainerFragment();
 
         final Bundle bundle = new Bundle();
         bundle.putString(ContentFragment.TYPE, "movie");
@@ -82,5 +86,13 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Fragment fragment = new MovieFavFragment();
+        fragment.onActivityResult(requestCode, resultCode, data);
+
     }
 }

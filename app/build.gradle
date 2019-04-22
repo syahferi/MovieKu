@@ -12,6 +12,7 @@ android {
         buildConfigField "String", "BASE_URL", '"https://api.themoviedb.org/"'
         buildConfigField "String", "IMG_URL", '"https://image.tmdb.org/t/p/w500"'
         buildConfigField "String", "API_KEY", '"e2f0a4994f340154ff8b31c65f8f9c5e"'
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -41,7 +42,8 @@ dependencies {
     //other libs
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0-alpha03'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha03'
+    androidTestImplementation 'androidx.test:runner:1.2.0-alpha04'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha04'
 }

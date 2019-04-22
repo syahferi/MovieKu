@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.squareup.picasso.Picasso;
 import com.studio.karya.submission4.R;
 import com.studio.karya.submission4.menu.activity.DetailActivity;
@@ -17,10 +20,8 @@ import com.studio.karya.submission4.utils.CustomOnItemClick;
 
 import java.util.ArrayList;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import static com.studio.karya.submission4.BuildConfig.IMG_URL;
+import static com.studio.karya.submission4.menu.activity.DetailActivity.REQUEST_UPDATE;
 
 public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHolder> {
 
@@ -43,6 +44,12 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
             this.listContent = listContent;
         }
         notifyDataSetChanged();
+    }
+
+    public void removeItem(int position) {
+        this.listContent.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, listContent.size());
     }
 
     @NonNull
@@ -82,7 +89,8 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
                 Intent intent = new Intent(activity, DetailActivity.class);
                 intent.putExtra(DetailActivity.DATA, listContent.get(position));
                 intent.putExtra(DetailActivity.TYPE, type);
-                activity.startActivity(intent);
+                intent.putExtra(DetailActivity.EXTRA_POSITION, position);
+                activity.startActivityForResult(intent, REQUEST_UPDATE);
             }
         }));
     }
