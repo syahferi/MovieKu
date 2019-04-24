@@ -3,7 +3,6 @@ package com.studio.karya.submission4.menu.fragment.fav;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +19,12 @@ import com.studio.karya.submission4.adapter.ContentAdapter;
 import com.studio.karya.submission4.db.DML.ContentHelper;
 
 import static com.studio.karya.submission4.db.DDL.DatabaseContract.TABLE_MOVIE;
+import static com.studio.karya.submission4.db.DDL.DatabaseContract.TABLE_TV;
 import static com.studio.karya.submission4.menu.activity.DetailActivity.EXTRA_POSITION;
 import static com.studio.karya.submission4.menu.activity.DetailActivity.REQUEST_UPDATE;
 import static com.studio.karya.submission4.menu.activity.DetailActivity.RESULT_DELETE;
 
-public class MovieFavFragment extends Fragment {
+public class FavFragment extends Fragment {
 
     private ContentHelper contentHelper;
     private ContentAdapter contentAdapter;
@@ -36,8 +36,7 @@ public class MovieFavFragment extends Fragment {
         contentHelper = ContentHelper.getInstance(getContext());
         contentHelper.open();
 
-        contentAdapter = new ContentAdapter(getActivity(), "movie");
-        contentAdapter.setListContent(contentHelper.getAllContent(TABLE_MOVIE));
+        checkTypeFragment();
 
         View view = inflater.inflate(R.layout.fragment_content_fragment, container, false);
         ProgressBar progressBar = view.findViewById(R.id.loading);
@@ -50,11 +49,25 @@ public class MovieFavFragment extends Fragment {
         return view;
     }
 
+    private void checkTypeFragment() {
+        String tipe = null;
+        if (getArguments() != null) {
+            tipe = getArguments().getString("type");
+        }
+        if (tipe != null) {
+            if (tipe.equals("movie")) {
+                contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, "movie");
+                contentAdapter.setListContent(contentHelper.getAllContent(TABLE_MOVIE));
+            } else {
+                contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, "tv");
+                contentAdapter.setListContent(contentHelper.getAllContent(TABLE_TV));
+            }
+        }
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        Log.d("dadada", requestCode+" "+resultCode);
         if (data != null) {
             if (requestCode == REQUEST_UPDATE) {
                 if (resultCode == RESULT_DELETE) {
@@ -69,5 +82,4 @@ public class MovieFavFragment extends Fragment {
         super.onDestroy();
         contentHelper.close();
     }
-
 }

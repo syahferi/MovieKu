@@ -2,7 +2,6 @@ package com.studio.karya.submission4.menu.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +28,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     public static final String EXTRA_POSITION = "position";
     public static final int RESULT_DELETE = 301;
     public static final int REQUEST_UPDATE = 101;
-    private boolean data_remove = false;
 
     private ImageView imgBackdrop, imgPoster;
     private TextView tvTitle, tvPopularity, tvVoteCount, tvVoteAvg, tvOverview;
@@ -71,37 +69,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         setFavorite();
     }
 
-    private void favoriteState() {
-        if (type.equals("movie")) {
-            boolean state = contentHelper.getContent(TABLE_MOVIE, content.getId());
-            if (state) isFavorite = true;
-        } else {
-            boolean state = contentHelper.getContent(TABLE_TV, content.getId());
-            if (state) isFavorite = true;
-        }
-    }
-
-    private void setFavorite() {
-        if (isFavorite) {
-            fabFav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_added_to_favorites));
-        } else {
-            fabFav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_add_to_favorites));
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.fab_fav) {
-            if (isFavorite) {  //first false
-                removeFromFavorite();
-            } else {
-                addToFavorite();
-            }
-            isFavorite = !isFavorite; //first (false to true)
-            setFavorite();
-        }
-    }
-
+    //setting for toolbar
     private void settingToolbar(Content content) {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -121,6 +89,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 ContextCompat.getColor(this, android.R.color.transparent));
     }
 
+    //bind content
     private void bindContent(Content content) {
         Picasso.get().load(IMG_URL + content.getBackdropPath()).fit().into(imgBackdrop);
         Picasso.get().load(IMG_URL + content.getPosterPath()).fit().into(imgPoster);
@@ -137,33 +106,75 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         tvOverview.setText(content.getOverview());
     }
 
+    //menandai apakah konten sudah ada di database atau belum
+    private void favoriteState() {
+        if (type.equals("movie")) {
+            boolean stateMovie = contentHelper.hasContent(TABLE_MOVIE, content.getId());
+            if (stateMovie) isFavorite = true;
+        } else {
+            boolean stateTv = contentHelper.hasContent(TABLE_TV, content.getId());
+            if (stateTv) isFavorite = true;
+        }
+    }
+
+    //menandai ada atau tidak kontent di database dengan perubahan image bintang
+    private void setFavorite() {
+        if (isFavorite) {
+            fabFav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_added_to_favorites));
+        } else {
+            fabFav.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_add_to_favorites));
+        }
+    }
+
+    //mengahapus kontent dari database
     private void removeFromFavorite() {
         if (type.equals("movie")) {
             contentHelper.deleteContent(content.getId(), TABLE_MOVIE);
         } else {
             contentHelper.deleteContent(content.getId(), TABLE_TV);
         }
-        data_remove = true;
-        Intent intent = new Intent();
-        intent.putExtra(EXTRA_POSITION, content.getId());
-        setResult(RESULT_DELETE, intent);
     }
 
+    //menambahkan kontent dari database
     private void addToFavorite() {
         if (type.equals("movie")) {
             contentHelper.insertContent(content, TABLE_MOVIE);
         } else {
             contentHelper.insertContent(content, TABLE_TV);
         }
+    }
 
+    //method mengirim result ke fragment onActivityResult
+    private void deleteItem() {
         Intent intent = new Intent();
-        intent.putExtra(EXTRA_POSITION, content.getId());
+        intent.putExtra(EXTRA_POSITION, position_item);
         setResult(RESULT_DELETE, intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.fab_fav) {
+            if (isFavorite) {  //first false
+                removeFromFavorite();
+            } else {
+                addToFavorite();
+            }
+            isFavorite = !isFavorite; //first (false to true)
+            setFavorite();
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         contentHelper.close();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!isFavorite) {
+            deleteItem();
+        }
+        super.onBackPressed();
     }
 }

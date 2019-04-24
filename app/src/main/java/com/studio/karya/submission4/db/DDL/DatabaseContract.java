@@ -18,5 +18,4 @@ public class DatabaseContract {
         public static String VOTE_COUNT = "vote_count";
         public static String VOTE_AVG = "vote_avg";
     }
-
 }

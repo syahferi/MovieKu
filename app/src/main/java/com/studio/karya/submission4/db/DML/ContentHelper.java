@@ -60,7 +60,8 @@ public class ContentHelper {
     //Read
     public ArrayList<Content> getAllContent(String database_table) {
         ArrayList<Content> contents = new ArrayList<>();
-        Cursor cursor = database.query(database_table, null,
+        Cursor cursor = database.query(database_table,
+                null,
                 null,
                 null,
                 null,
@@ -94,7 +95,7 @@ public class ContentHelper {
         return contents;
     }
 
-    public boolean getContent(String table, int id_content) {
+    public boolean hasContent(String table, int id_content) {
         String selection = "id_content = ?";
         boolean hasResult;
         Cursor cursor = database.query(table, null,
@@ -109,27 +110,28 @@ public class ContentHelper {
     }
 
     //create
-    public long insertContent(Content content, String table) {
+    public void insertContent(Content content, String table) {
         ContentValues contentValues = new ContentValues();
 
         if (table.equals(TABLE_MOVIE)) {
             contentValues.put(TITLE, content.getTitleFilm());
+            contentValues.put(RELEASE_DATE, content.getReleaseDate());
         } else {
             contentValues.put(TITLE, content.getTitleTv());
+            contentValues.put(RELEASE_DATE, content.getFirstAirDateTv());
         }
         contentValues.put(ID_CONTENT, content.getId());
         contentValues.put(OVERVIEW, content.getOverview());
-        contentValues.put(RELEASE_DATE, content.getReleaseDate());
         contentValues.put(POSTER, content.getPosterPath());
         contentValues.put(BACKDROP_POSTER, content.getBackdropPath());
         contentValues.put(POPULARITY, content.getPopularity());
         contentValues.put(VOTE_COUNT, content.getVoteCount());
         contentValues.put(VOTE_AVG, content.getVoteAverage());
-        return database.insert(table, null, contentValues);
+        database.insert(table, null, contentValues);
     }
 
     //delete
-    public int deleteContent(int id, String table) {
-        return database.delete(table, ID_CONTENT + "= '" + id + "'", null);
+    public void deleteContent(int id, String table) {
+        database.delete(table, ID_CONTENT + "= '" + id + "'", null);
     }
 }

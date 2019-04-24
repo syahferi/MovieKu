@@ -25,8 +25,10 @@ public class ConvertDate {
         String str = null;
 
         try {
-            date = inputFormat.parse(dateRelease);
-            str = outputFormat.format(date);
+            if (dateRelease != null) {
+                date = inputFormat.parse(dateRelease);
+                str = outputFormat.format(date);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }

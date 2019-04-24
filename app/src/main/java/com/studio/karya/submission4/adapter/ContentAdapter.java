@@ -2,6 +2,7 @@ package com.studio.karya.submission4.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -28,10 +30,17 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     private ArrayList<Content> listContent = new ArrayList<>();
     private Activity activity;
     private String type;
+    private Fragment fragment;
 
     public ContentAdapter(Activity activity, String type) {
         this.activity = activity;
         this.type = type;
+    }
+
+    public ContentAdapter(Activity activity, Fragment fragment, String type) {
+        this.activity = activity;
+        this.type = type;
+        this.fragment = fragment;
     }
 
     public ArrayList<Content> getListContent() {
@@ -47,6 +56,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     }
 
     public void removeItem(int position) {
+        Log.d("Datada", position+" onres");
         this.listContent.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, listContent.size());
@@ -89,8 +99,13 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
                 Intent intent = new Intent(activity, DetailActivity.class);
                 intent.putExtra(DetailActivity.DATA, listContent.get(position));
                 intent.putExtra(DetailActivity.TYPE, type);
-                intent.putExtra(DetailActivity.EXTRA_POSITION, position);
-                activity.startActivityForResult(intent, REQUEST_UPDATE);
+                intent.putExtra(DetailActivity.EXTRA_POSITION, String.valueOf(position));
+                Log.d("Datapos", position+"");
+                if (fragment == null) {
+                    activity.startActivity(intent);
+                } else {
+                    fragment.startActivityForResult(intent, REQUEST_UPDATE);
+                }
             }
         }));
     }
