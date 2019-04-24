@@ -106,6 +106,7 @@ public class ContentHelper {
                 _ID + " ASC",
                 null);
         hasResult = cursor.getCount() > 0;
+        cursor.close();
         return hasResult;
     }
 
