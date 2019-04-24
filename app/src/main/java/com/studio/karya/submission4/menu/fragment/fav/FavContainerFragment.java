@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,7 +14,7 @@ import com.studio.karya.submission4.R;
 import com.studio.karya.submission4.utils.PagerAdapter;
 
 
-public class FavContainerFragment extends Fragment{
+public class FavContainerFragment extends Fragment {
 
     private ViewPager viewPager;
     private TabLayout tab;

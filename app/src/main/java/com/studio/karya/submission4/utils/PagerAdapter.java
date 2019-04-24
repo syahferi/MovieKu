@@ -12,9 +12,6 @@ import com.studio.karya.submission4.menu.fragment.fav.FavFragment;
 
 public class PagerAdapter extends FragmentPagerAdapter {
 
-    Bundle bundle;
-    Fragment fragment;
-
     public PagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
@@ -22,6 +19,8 @@ public class PagerAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
+        Bundle bundle;
+        Fragment fragment;
         if (position == 0) {
             bundle = new Bundle();
             bundle.putString("type", "movie");

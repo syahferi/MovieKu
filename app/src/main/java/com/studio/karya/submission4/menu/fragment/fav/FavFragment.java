@@ -1,6 +1,5 @@
 package com.studio.karya.submission4.menu.fragment.fav;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
