@@ -75,12 +75,14 @@ public class ContentHelper {
                 content = new Content();
                 if (database_table.equals(TABLE_MOVIE)) {
                     content.setTitleFilm(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
+                    content.setReleaseDate(cursor.getString(cursor.getColumnIndexOrThrow(RELEASE_DATE)));
                 } else {
                     content.setTitleTv(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
+                    content.setFirstAirDateTv(cursor.getString(cursor.getColumnIndexOrThrow(RELEASE_DATE)));
+
                 }
                 content.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ID_CONTENT)));
                 content.setOverview(cursor.getString(cursor.getColumnIndexOrThrow(OVERVIEW)));
-                content.setReleaseDate(cursor.getString(cursor.getColumnIndexOrThrow(RELEASE_DATE)));
                 content.setPosterPath(cursor.getString(cursor.getColumnIndexOrThrow(POSTER)));
                 content.setBackdropPath(cursor.getString(cursor.getColumnIndexOrThrow(BACKDROP_POSTER)));
                 content.setPopularity(cursor.getString(cursor.getColumnIndexOrThrow(POPULARITY)));

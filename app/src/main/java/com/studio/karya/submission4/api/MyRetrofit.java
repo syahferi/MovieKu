@@ -6,7 +6,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.studio.karya.submission4.BuildConfig.BASE_URL;
 
-
 public class MyRetrofit {
 
     private static Retrofit getRetrofit() {

@@ -8,10 +8,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 import com.studio.karya.submission4.R;
 import com.studio.karya.submission4.db.DML.ContentHelper;
@@ -32,6 +34,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView imgBackdrop, imgPoster;
     private TextView tvTitle, tvPopularity, tvVoteCount, tvVoteAvg, tvOverview;
     private FloatingActionButton fabFav;
+    private CoordinatorLayout coordinatorLayout;
 
     private String type;
     private String position_item;
@@ -59,6 +62,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         tvVoteAvg = findViewById(R.id.vote_avg_detail);
         tvOverview = findViewById(R.id.overview_detail);
         fabFav = findViewById(R.id.fab_fav);
+        coordinatorLayout = findViewById(R.id.main_detail);
 
         fabFav.setOnClickListener(this);
         bindContent(content);
@@ -133,6 +137,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         } else {
             contentHelper.deleteContent(content.getId(), TABLE_TV);
         }
+        snackBar("data dihapus dari favorite");
     }
 
     //menambahkan kontent dari database
@@ -142,6 +147,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         } else {
             contentHelper.insertContent(content, TABLE_TV);
         }
+        snackBar("data ditambahkan ke favorite");
     }
 
     //method mengirim result ke fragment onActivityResult
@@ -149,6 +155,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = new Intent();
         intent.putExtra(EXTRA_POSITION, position_item);
         setResult(RESULT_DELETE, intent);
+    }
+
+    private void snackBar(String message) {
+        Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

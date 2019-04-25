@@ -35,11 +35,11 @@ public class FavFragment extends Fragment {
         contentHelper = ContentHelper.getInstance(getContext());
         contentHelper.open();
 
-        checkTypeFragment();
-
         View view = inflater.inflate(R.layout.fragment_content_fragment, container, false);
         ProgressBar progressBar = view.findViewById(R.id.loading);
         progressBar.setVisibility(View.GONE);
+
+        checkTypeFragment();
 
         RecyclerView rvFav = view.findViewById(R.id.rv_content);
         rvFav.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -55,10 +55,10 @@ public class FavFragment extends Fragment {
         }
         if (tipe != null) {
             if (tipe.equals("movie")) {
-                contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, "movie");
+                contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, tipe);
                 contentAdapter.setListContent(contentHelper.getAllContent(TABLE_MOVIE));
             } else {
-                contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, "tv");
+                contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, tipe);
                 contentAdapter.setListContent(contentHelper.getAllContent(TABLE_TV));
             }
         }

@@ -11,7 +11,7 @@ public class ConvertDate {
     public ConvertDate() {
     }
 
-    public String date(String dateRelease){
+    public String date(String dateRelease) {
 
         String inputPattern = "yyyy-MM-dd";
         String outputPattern = "dd MMM yyyy";

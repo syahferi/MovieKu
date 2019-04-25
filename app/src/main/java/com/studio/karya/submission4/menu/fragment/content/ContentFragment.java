@@ -7,19 +7,16 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.studio.karya.submission4.R;
-import com.studio.karya.submission4.adapter.ContentAdapter;
-import com.studio.karya.submission4.api.repository.Repository;
-import com.studio.karya.submission4.model.ContentResponse;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import com.studio.karya.submission4.R;
+import com.studio.karya.submission4.adapter.ContentAdapter;
+import com.studio.karya.submission4.api.repository.Repository;
+import com.studio.karya.submission4.model.ContentResponse;
+
 public class ContentFragment extends Fragment implements ContentView {
 
     public static String TYPE = "type";
@@ -35,7 +32,7 @@ public class ContentFragment extends Fragment implements ContentView {
 
         String type = null;
         Bundle bundle = getArguments();
-        if (bundle != null){
+        if (bundle != null) {
             type = bundle.getString(TYPE);
         }
 

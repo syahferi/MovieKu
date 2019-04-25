@@ -43,10 +43,6 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
         this.fragment = fragment;
     }
 
-    public ArrayList<Content> getListContent() {
-        return listContent;
-    }
-
     public void setListContent(ArrayList<Content> listContent) {
 
         if (listContent.size() > 0) {
@@ -56,7 +52,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     }
 
     public void removeItem(int position) {
-        Log.d("Datada", position+" onres");
+        Log.d("Datada", position + " onres");
         this.listContent.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, listContent.size());
@@ -100,7 +96,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
                 intent.putExtra(DetailActivity.DATA, listContent.get(position));
                 intent.putExtra(DetailActivity.TYPE, type);
                 intent.putExtra(DetailActivity.EXTRA_POSITION, String.valueOf(position));
-                Log.d("Datapos", position+"");
+                Log.d("Datapos", position + "");
                 if (fragment == null) {
                     activity.startActivity(intent);
                 } else {

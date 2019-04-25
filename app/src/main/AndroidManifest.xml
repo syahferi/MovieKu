@@ -22,13 +22,16 @@
                 android:value=".menu.activity.MainActivity" />
         </activity>
 
-        <activity android:name=".menu.activity.MainActivity">
+        <activity
+            android:name=".menu.activity.MainActivity"
+            android:configChanges="orientation|screenSize|locale">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

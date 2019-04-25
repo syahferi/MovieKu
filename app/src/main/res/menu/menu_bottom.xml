@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_movie"
-        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_movie"
         android:title="@string/movie"
-        android:icon="@drawable/ic_movie"/>
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_tv"
-        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_tv"
         android:title="@string/tv"
-        android:icon="@drawable/ic_tv"/>
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_fav"
-        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_favorite"
         android:title="@string/favorite"
-        android:icon="@drawable/ic_favorite"/>
+        app:showAsAction="ifRoom" />
 </menu>

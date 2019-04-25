@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Movieku</string>
-    <string name="movie">Film</string>
+    <string name="movie">Movie</string>
     <string name="tv">TV</string>
     <string name="favorite">Favorite</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="change_langauge">change langauge</string>
+    <string name="change_langauge">change language</string>
     <string name="img_poster">img_poster</string>
     <string name="release_date">Release Date</string>
     <string name="first_air_date">First Air Date</string>
@@ -14,5 +15,5 @@
     <string name="title_popularity">Popularity</string>
     <string name="vote_count">Vote Count</string>
     <string name="vote_average">Vote Average</string>
-    <string name="msg_no_data">No Data</string>
+    <string name="msg_no_data">No data</string>
 </resources>
