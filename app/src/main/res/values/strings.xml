@@ -15,4 +15,5 @@
     <string name="vote_count">Vote Count</string>
     <string name="vote_average">Vote Average</string>
     <string name="msg_no_data">No Data</string>
+    <string name="search">search</string>
 </resources>
