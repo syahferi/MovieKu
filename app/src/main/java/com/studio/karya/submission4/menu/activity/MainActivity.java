@@ -78,12 +78,16 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    //todo add change language
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_language) {
-            Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-            startActivityForResult(intent, 101);
+        switch (item.getItemId()){
+            case R.id.action_language:
+                Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivityForResult(intent, 101);
+                break;
+            case R.id.action_search:
+
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
