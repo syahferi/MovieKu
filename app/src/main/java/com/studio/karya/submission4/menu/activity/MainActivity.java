@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_search:
 
                 //TODO with position menu, can filter with searchview with diferent fragment
-                //check 4
+                //check 5
 
                 SearchView searchView = (SearchView) item.getActionView();
                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
