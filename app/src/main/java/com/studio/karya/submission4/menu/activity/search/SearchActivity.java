@@ -5,6 +5,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -32,8 +33,8 @@ public class SearchActivity extends AppCompatActivity implements com.studio.kary
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
 
+        setContentView(R.layout.activity_search);
         lottieAnimationView = findViewById(R.id.anim_no_data);
 
         hintSearch = getIntent().getStringExtra(HINT_SEARCH);
@@ -73,6 +74,7 @@ public class SearchActivity extends AppCompatActivity implements com.studio.kary
         SearchView searchView = (SearchView) mSearch.getActionView();
         searchView.setIconified(false);
         searchView.setQueryHint(hintSearch);
+        searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -85,6 +87,7 @@ public class SearchActivity extends AppCompatActivity implements com.studio.kary
                 return false;
             }
         });
+
     }
 
     @Override

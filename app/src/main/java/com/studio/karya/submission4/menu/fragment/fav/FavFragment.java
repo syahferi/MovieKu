@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.studio.karya.submission4.R;
 import com.studio.karya.submission4.adapter.ContentAdapter;
 import com.studio.karya.submission4.db.DML.ContentHelper;
@@ -28,6 +29,8 @@ public class FavFragment extends Fragment {
     private ContentHelper contentHelper;
     private ContentAdapter contentAdapter;
 
+    LottieAnimationView anim_no_data;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class FavFragment extends Fragment {
         contentHelper.open();
 
         View view = inflater.inflate(R.layout.fragment_content_fragment, container, false);
+        anim_no_data = view.findViewById(R.id.anim_no_data);
         ProgressBar progressBar = view.findViewById(R.id.loading);
         progressBar.setVisibility(View.GONE);
 
@@ -56,10 +60,20 @@ public class FavFragment extends Fragment {
         if (tipe != null) {
             if (tipe.equals("movie")) {
                 contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, tipe);
-                contentAdapter.setListContent(contentHelper.getAllContent(TABLE_MOVIE));
-            } else {
+                if (contentHelper.getAllContent(TABLE_MOVIE).isEmpty()) {
+                    anim_no_data.setVisibility(View.VISIBLE);
+                } else {
+                    anim_no_data.setVisibility(View.GONE);
+                    contentAdapter.setListContent(contentHelper.getAllContent(TABLE_MOVIE));
+                }
+            }else {
                 contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, tipe);
-                contentAdapter.setListContent(contentHelper.getAllContent(TABLE_TV));
+                if (contentHelper.getAllContent(TABLE_TV).isEmpty()) {
+                    anim_no_data.setVisibility(View.VISIBLE);
+                } else {
+                    anim_no_data.setVisibility(View.GONE);
+                    contentAdapter.setListContent(contentHelper.getAllContent(TABLE_TV));
+                }
             }
         }
     }
@@ -71,6 +85,11 @@ public class FavFragment extends Fragment {
             if (requestCode == REQUEST_UPDATE) {
                 if (resultCode == RESULT_DELETE) {
                     contentAdapter.removeItem(Integer.valueOf(data.getStringExtra(EXTRA_POSITION)));
+                    if (contentAdapter.getItemCount() == 0){
+                        anim_no_data.setVisibility(View.VISIBLE);
+                    } else {
+                        anim_no_data.setVisibility(View.GONE);
+                    }
                 }
             }
         }
