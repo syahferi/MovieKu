@@ -2,6 +2,7 @@ package com.studio.karya.submission4.menu.fragment.fav;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +71,7 @@ public class FavFragment extends Fragment {
         if (data != null) {
             if (requestCode == REQUEST_UPDATE) {
                 if (resultCode == RESULT_DELETE) {
-                    contentAdapter.removeItem(data.getIntExtra(EXTRA_POSITION, 0));
+                    contentAdapter.removeItem(Integer.valueOf(data.getStringExtra(EXTRA_POSITION)));
                 }
             }
         }

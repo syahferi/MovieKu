@@ -39,9 +39,7 @@ public class ContentFragment extends Fragment implements ContentView {
         //call presenter
         Repository repository = new Repository();
         ContentPresenter contentPresenter = new ContentPresenter(this, repository);
-        if (bundle != null) {
-            contentPresenter.getContent(type);
-        }
+        contentPresenter.getContent(type);
 
         //call adapter
         contentAdapter = new ContentAdapter(getActivity(), type);

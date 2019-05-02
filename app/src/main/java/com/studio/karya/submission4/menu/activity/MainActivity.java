@@ -10,13 +10,16 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.studio.karya.submission4.R;
+import com.studio.karya.submission4.menu.activity.search.SearchActivity;
 import com.studio.karya.submission4.menu.fragment.content.ContentFragment;
 import com.studio.karya.submission4.menu.fragment.fav.FavContainerFragment;
+
+import static com.studio.karya.submission4.menu.activity.search.SearchActivity.HINT_SEARCH;
+import static com.studio.karya.submission4.menu.activity.search.SearchActivity.SEARCH_TYPE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -95,6 +98,13 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_search:
                 intent = new Intent(this, SearchActivity.class);
+                if (position_menu == 0) {
+                    intent.putExtra(SEARCH_TYPE, "movie");
+                    intent.putExtra(HINT_SEARCH, "Search movie");
+                } else {
+                    intent.putExtra(SEARCH_TYPE, "tv");
+                    intent.putExtra(HINT_SEARCH, "Search tv");
+                }
                 startActivity(intent);
                 break;
         }

@@ -2,6 +2,7 @@ package com.studio.karya.submission4.menu.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -154,6 +155,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private void deleteItem() {
         Intent intent = new Intent();
         intent.putExtra(EXTRA_POSITION, position_item);
+        Log.d("datapost", position_item+" ");
         setResult(RESULT_DELETE, intent);
     }
 

@@ -65,4 +65,58 @@ public class Repository {
                     }
                 });
     }
+
+    public void searchMovie(String nameMovie, final CallbackRepository<ContentResponse> callback) {
+        MyRetrofit.getApiService()
+                .searchMovie(API_KEY, "en-US", nameMovie)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ContentResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(ContentResponse dataResponse) {
+                        callback.onDataLoaded(dataResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onDataError(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        callback.onComplete();
+                    }
+                });
+    }
+
+    public void searchTv(String nameTv, final CallbackRepository<ContentResponse> callback) {
+        MyRetrofit.getApiService()
+                .searchTv(API_KEY, "en-US", nameTv)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ContentResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(ContentResponse dataResponse) {
+                        callback.onDataLoaded(dataResponse);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onDataError(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        callback.onComplete();
+                    }
+                });
+    }
 }

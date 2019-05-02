@@ -98,7 +98,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
                 intent.putExtra(DetailActivity.EXTRA_POSITION, String.valueOf(position));
                 Log.d("Datapos", position + "");
                 if (fragment == null) {
-                    activity.startActivity(intent);
+                    activity.startActivityForResult(intent, REQUEST_UPDATE);
                 } else {
                     fragment.startActivityForResult(intent, REQUEST_UPDATE);
                 }

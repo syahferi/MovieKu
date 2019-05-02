@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.activity.SearchActivity">
+    tools:context=".menu.activity.search.SearchActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_search"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
