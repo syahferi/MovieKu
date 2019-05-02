@@ -16,4 +16,6 @@
     <string name="vote_average">Vote Average</string>
     <string name="msg_no_data">No Data</string>
     <string name="search">search</string>
+    <string name="img_no_data">img_no_data</string>
+    <string name="no_data">Sorry bro, there is no data</string>
 </resources>

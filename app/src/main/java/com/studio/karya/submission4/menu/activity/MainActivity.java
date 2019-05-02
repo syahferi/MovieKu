@@ -22,7 +22,7 @@ import static com.studio.karya.submission4.menu.activity.search.SearchActivity.H
 import static com.studio.karya.submission4.menu.activity.search.SearchActivity.SEARCH_TYPE;
 
 public class MainActivity extends AppCompatActivity {
-    
+
     BottomNavigationView menuBottom;
     int position_menu = 0;
 

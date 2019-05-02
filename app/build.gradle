@@ -41,6 +41,7 @@ dependencies {
 
     //other libs
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation "com.airbnb.android:lottie:3.0.1"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'

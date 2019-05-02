@@ -16,4 +16,5 @@
     <string name="vote_count">Vote Count</string>
     <string name="vote_average">Vote Average</string>
     <string name="msg_no_data">No data</string>
+    <string name="no_data">Sorry bro, there is no data</string>
 </resources>

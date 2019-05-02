@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.studio.karya.submission4.R;
 import com.studio.karya.submission4.adapter.ContentAdapter;
 import com.studio.karya.submission4.api.repository.Repository;
@@ -23,12 +25,16 @@ public class SearchActivity extends AppCompatActivity implements com.studio.kary
     private SearchPresenter searchPresenter;
     private ContentAdapter contentAdapter;
 
+    private LottieAnimationView lottieAnimationView;
+
     String hintSearch, tipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        lottieAnimationView = findViewById(R.id.anim_no_data);
 
         hintSearch = getIntent().getStringExtra(HINT_SEARCH);
         tipe = getIntent().getStringExtra(SEARCH_TYPE);
@@ -83,6 +89,9 @@ public class SearchActivity extends AppCompatActivity implements com.studio.kary
 
     @Override
     public void showData(ContentResponse data) {
-        contentAdapter.setListContent(data.getContentList());
+        if (data != null) {
+            lottieAnimationView.setVisibility(View.GONE);
+            contentAdapter.setListContent(data.getContentList());
+        }
     }
 }
