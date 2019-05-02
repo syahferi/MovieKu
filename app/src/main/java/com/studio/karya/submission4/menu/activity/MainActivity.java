@@ -22,8 +22,7 @@ import static com.studio.karya.submission4.menu.activity.search.SearchActivity.H
 import static com.studio.karya.submission4.menu.activity.search.SearchActivity.SEARCH_TYPE;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = MainActivity.class.getSimpleName();
+    
     BottomNavigationView menuBottom;
     int position_menu = 0;
 
