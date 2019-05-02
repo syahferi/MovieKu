@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ContentFragment();
                         fragment.setArguments(bundle);
                         loadFragment(fragment);
-
                         break;
+
                     case R.id.action_tv:
                         position_menu = 1;
                         bundle.putString(ContentFragment.TYPE, "tv");
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment.setArguments(bundle);
                         loadFragment(fragment);
                         break;
+
                     case R.id.action_fav:
                         loadFragment(favFragment);
                         break;
