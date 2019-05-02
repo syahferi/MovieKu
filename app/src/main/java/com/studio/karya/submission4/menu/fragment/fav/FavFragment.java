@@ -29,7 +29,7 @@ public class FavFragment extends Fragment {
     private ContentHelper contentHelper;
     private ContentAdapter contentAdapter;
 
-    LottieAnimationView anim_no_data;
+    private LottieAnimationView anim_no_data;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

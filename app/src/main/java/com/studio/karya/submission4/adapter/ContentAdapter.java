@@ -2,7 +2,6 @@ package com.studio.karya.submission4.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +51,6 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     }
 
     public void removeItem(int position) {
-        Log.d("Datada", position + " onres");
         this.listContent.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, listContent.size());
@@ -96,7 +94,6 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
                 intent.putExtra(DetailActivity.DATA, listContent.get(position));
                 intent.putExtra(DetailActivity.TYPE, type);
                 intent.putExtra(DetailActivity.EXTRA_POSITION, String.valueOf(position));
-                Log.d("Datapos", position + "");
                 if (fragment == null) {
                     activity.startActivityForResult(intent, REQUEST_UPDATE);
                 } else {

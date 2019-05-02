@@ -5,7 +5,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -87,7 +86,6 @@ public class SearchActivity extends AppCompatActivity implements com.studio.kary
                 return false;
             }
         });
-
     }
 
     @Override
