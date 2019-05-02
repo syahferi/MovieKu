@@ -3,11 +3,9 @@ package com.studio.karya.submission4.menu.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -89,32 +87,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.action_language:
-                Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
                 startActivityForResult(intent, 101);
                 break;
             case R.id.action_search:
-
-                //TODO with position menu, can filter with searchview with diferent fragment
-                //check 5
-
-                SearchView searchView = (SearchView) item.getActionView();
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        //call with api
-                        Log.d(TAG, query+" submit");
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        //call with adapter
-                        Log.d(TAG, newText);
-                        return false;
-                    }
-                });
+                intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -15,6 +15,14 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
+            android:name=".menu.activity.SearchActivity"
+            android:configChanges="orientation|screenSize|locale">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".menu.activity.MainActivity" />
+        </activity>
+
+        <activity
             android:name=".menu.activity.DetailActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
