@@ -12,13 +12,13 @@ import android.widget.RemoteViewsService;
 import com.studio.karya.submission4.R;
 import com.studio.karya.submission4.db.DML.ContentHelper;
 import com.studio.karya.submission4.model.Content;
+import com.studio.karya.submission4.utils.ParcelableUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.studio.karya.submission4.BuildConfig.IMG_URL;
 import static com.studio.karya.submission4.db.DDL.DatabaseContract.TABLE_MOVIE;
@@ -40,35 +40,57 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public void onDataSetChanged() {
+
+        Log.d("datadat", "datachange");
+
         contentHelper = ContentHelper.getInstance(mContext);
+        listContent.clear();
         contentHelper.open();
         listContent.addAll(contentHelper.getAllContent(TABLE_MOVIE));
     }
 
     @Override
     public void onDestroy() {
-        contentHelper.close();
+        if (contentHelper != null) {
+            contentHelper.close();
+        }
     }
 
     @Override
     public int getCount() {
-        return listContent.size();
+        if (listContent.size() > 0) {
+            return listContent.size();
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public RemoteViews getViewAt(int position) {
 
-        Log.d("data_content", listContent.get(position).getTitleFilm()+" tes");
+        Log.d("data_content", listContent.get(position).getTitleFilm() + " tes");
 
         RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);
-        rv.setImageViewBitmap(R.id.imageView, getBitmapFromURL(IMG_URL+listContent.get(position).getBackdropPath()));
+        if (!listContent.isEmpty()) {
+            rv.setImageViewBitmap(R.id.imageView, getBitmapFromURL(IMG_URL + listContent.get(position).getBackdropPath()));
+            rv.setTextViewText(R.id.textView, listContent.get(position).getTitleFilm());
 
-        Bundle extras = new Bundle();
-        extras.putInt(FavoriteWidget.EXTRA_ITEM, position);
-        Intent fillIntent = new Intent();
-        fillIntent.putExtras(extras);
+            byte[] parceAble = ParcelableUtil.marshall(listContent.get(position));
 
-        rv.setOnClickFillInIntent(R.id.imageView, fillIntent);
+            Bundle extras = new Bundle();
+            extras.putString(FavoriteWidget.TYPE_DATA, "movie");
+            extras.putInt(FavoriteWidget.EXTRA_ITEM, position);
+            extras.putByteArray(FavoriteWidget.EXTRA_DATA, parceAble);
+       /* extras.putParcelable(FavoriteWidget.EXTRA_DATA, listContent.get(position));
+        extras.putString(FavoriteWidget.TYPE_DATA, "movie");*/
+
+            Intent fillIntent = new Intent();
+            fillIntent.putExtras(extras);
+        /*fillIntent.putExtra(FavoriteWidget.EXTRA_DATA, listContent.get(position));
+        fillIntent.putExtra(FavoriteWidget.TYPE_DATA, "movie");*/
+
+            rv.setOnClickFillInIntent(R.id.imageView, fillIntent);
+        }
         return rv;
     }
 

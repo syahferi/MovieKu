@@ -1,9 +1,15 @@
 package com.studio.karya.submission4.model;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.studio.karya.submission4.db.DDL.DatabaseContract;
+
+import static android.provider.BaseColumns._ID;
+import static com.studio.karya.submission4.db.DDL.DatabaseContract.getColumnInt;
+import static com.studio.karya.submission4.db.DDL.DatabaseContract.getColumnString;
 
 public class Content implements Parcelable {
 
@@ -151,7 +157,32 @@ public class Content implements Parcelable {
     public Content() {
     }
 
-    private Content(Parcel in) {
+    //constructor movie
+    public Content(int id, String voteCount, String voteAverage, String titleFilm, String popularity, String posterPath, String backdropPath, String overview, String releaseDate) {
+        this.id = id;
+        this.voteCount = voteCount;
+        this.voteAverage = voteAverage;
+        this.titleFilm = titleFilm;
+        this.popularity = popularity;
+        this.posterPath = posterPath;
+        this.backdropPath = backdropPath;
+        this.overview = overview;
+        this.releaseDate = releaseDate;
+    }
+
+    public Content(Cursor cursor) {
+        this.id = getColumnInt(cursor, _ID);
+        this.voteCount = getColumnString(cursor, DatabaseContract.TableColumns.VOTE_COUNT);
+        this.voteAverage = getColumnString(cursor, DatabaseContract.TableColumns.VOTE_AVG);
+        this.titleFilm = getColumnString(cursor, DatabaseContract.TableColumns.TITLE);
+        this.popularity = getColumnString(cursor, DatabaseContract.TableColumns.POPULARITY);
+        this.posterPath = getColumnString(cursor, DatabaseContract.TableColumns.POSTER);
+        this.backdropPath = getColumnString(cursor, DatabaseContract.TableColumns.BACKDROP_POSTER);
+        this.overview = getColumnString(cursor, DatabaseContract.TableColumns.OVERVIEW);
+        this.releaseDate = getColumnString(cursor, DatabaseContract.TableColumns.RELEASE_DATE);
+    }
+
+    public Content(Parcel in) {
         this.id = in.readInt();
         this.titleTv = in.readString();
         this.voteCount = in.readString();

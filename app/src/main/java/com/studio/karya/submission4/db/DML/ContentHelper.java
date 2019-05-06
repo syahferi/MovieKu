@@ -137,4 +137,38 @@ public class ContentHelper {
     public void deleteContent(int id, String table) {
         database.delete(table, ID_CONTENT + "= '" + id + "'", null);
     }
+
+    //content provider
+    //movie
+    public Cursor queryByIdProvider(String id, String table) {
+        return database.query(table, null
+                , _ID + " = ?"
+                , new String[]{id}
+                , null
+                , null
+                , null
+                , null);
+    }
+
+    public Cursor queryProvider(String table) {
+        return database.query(table
+                , null
+                , null
+                , null
+                , null
+                , null
+                , _ID + " ASC");
+    }
+
+    public long insertProvider(ContentValues values) {
+        return database.insert(TABLE_MOVIE, null, values);
+    }
+
+    public int updateProvider(String id, ContentValues values) {
+        return database.update(TABLE_MOVIE, values, _ID + " = ?", new String[]{id});
+    }
+
+    public int deleteProvider(String id) {
+        return database.delete(TABLE_MOVIE, _ID + " = ?", new String[]{id});
+    }
 }

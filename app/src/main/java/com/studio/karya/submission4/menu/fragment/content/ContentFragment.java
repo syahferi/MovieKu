@@ -42,7 +42,7 @@ public class ContentFragment extends Fragment implements ContentView {
         contentPresenter.getContent(type);
 
         //call adapter
-        contentAdapter = new ContentAdapter(getActivity(), type);
+        contentAdapter = new ContentAdapter(getActivity(), type, "notFav");
 
         RecyclerView rvContent = view.findViewById(R.id.rv_content);
         rvContent.setLayoutManager(new LinearLayoutManager(getContext()));

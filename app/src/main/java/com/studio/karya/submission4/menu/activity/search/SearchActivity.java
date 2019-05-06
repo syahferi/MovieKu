@@ -42,10 +42,10 @@ public class SearchActivity extends AppCompatActivity implements com.studio.kary
         //call adapter
         switch (tipe) {
             case "movie":
-                contentAdapter = new ContentAdapter(this, "movie");
+                contentAdapter = new ContentAdapter(this, "movie", "notFav");
                 break;
             case "tv":
-                contentAdapter = new ContentAdapter(this, "tv");
+                contentAdapter = new ContentAdapter(this, "tv", "notFav");
                 break;
         }
 

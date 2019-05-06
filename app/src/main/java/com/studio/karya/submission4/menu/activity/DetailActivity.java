@@ -1,11 +1,16 @@
 package com.studio.karya.submission4.menu.activity;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,6 +23,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 import com.studio.karya.submission4.R;
 import com.studio.karya.submission4.db.DML.ContentHelper;
+import com.studio.karya.submission4.menu.widget.FavoriteWidget;
 import com.studio.karya.submission4.model.Content;
 
 import static com.studio.karya.submission4.BuildConfig.IMG_URL;
@@ -29,6 +35,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     public static final String DATA = "data";
     public static final String TYPE = "type";
     public static final String EXTRA_POSITION = "position";
+    public static final String ORIGIN_FRAGMENT = "origin_fragment";
     public static final int RESULT_DELETE = 301;
     public static final int REQUEST_UPDATE = 101;
 
@@ -40,9 +47,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private String type;
     private String position_item;
     private Boolean isFavorite = false;
-
     private ContentHelper contentHelper;
     private Content content;
+
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,24 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         type = getIntent().getStringExtra(TYPE);
         position_item = getIntent().getStringExtra(EXTRA_POSITION);
+
+        Log.d("checkOrigin", getIntent().getStringExtra(ORIGIN_FRAGMENT));
+
+        //content yang berasal dari content provider
+        Uri uri = getIntent().getData();
+        if (uri != null) {
+            cursor = getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null) {
+                if (cursor.moveToNext()) {
+                    content = new Content(cursor);
+                }
+                cursor.close();
+            } else {
+                Toast.makeText(this, "data kosong", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        //content yang berasal dari parcelable
         content = getIntent().getParcelableExtra(DATA);
 
         settingToolbar(content);
@@ -64,8 +90,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         tvOverview = findViewById(R.id.overview_detail);
         fabFav = findViewById(R.id.fab_fav);
         coordinatorLayout = findViewById(R.id.main_detail);
-
         fabFav.setOnClickListener(this);
+
         bindContent(content);
         contentHelper = ContentHelper.getInstance(getApplicationContext());
         contentHelper.open();
@@ -155,7 +181,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private void deleteItem() {
         Intent intent = new Intent();
         intent.putExtra(EXTRA_POSITION, position_item);
-        Log.d("datapost", position_item+" ");
+        Log.d("datapost", position_item + " ");
         setResult(RESULT_DELETE, intent);
     }
 
@@ -163,9 +189,18 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 
+    private void notifyToWidget() {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), FavoriteWidget.class));
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.stack_view);
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fab_fav) {
+
+            notifyToWidget(); //notify to widget
+
             if (isFavorite) {  //first false
                 removeFromFavorite();
             } else {

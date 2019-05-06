@@ -18,6 +18,6 @@
     <string name="search">search</string>
     <string name="img_no_data">img_no_data</string>
     <string name="no_data">Sorry bro, there is no data</string>
-    <string name="appwidget_text">EXAMPLE</string>
+    <string name="appwidget_text">Movie Favorite</string>
     <string name="add_widget">Add widget</string>
 </resources>
