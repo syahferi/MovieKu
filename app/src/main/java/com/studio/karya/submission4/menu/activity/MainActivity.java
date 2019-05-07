@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.studio.karya.submission4.R;
+import com.studio.karya.submission4.menu.activity.reminder.ReminderActivity;
 import com.studio.karya.submission4.menu.activity.search.SearchActivity;
 import com.studio.karya.submission4.menu.fragment.content.ContentFragment;
 import com.studio.karya.submission4.menu.fragment.fav.FavContainerFragment;
@@ -108,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 startActivity(intent);
                 break;
+            case R.id.action_reminder:
+                intent = new Intent(this, ReminderActivity.class);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -117,14 +122,16 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 101) {
             menuBottom.setSelectedItemId(R.id.action_movie);
-            if (resultCode == RESULT_TYPE){
-                switch (data.getStringExtra(DetailActivity.EXTRA_TYPE)){
-                    case "movie":
-                        menuBottom.setSelectedItemId(R.id.action_movie);
-                        break;
-                    case "tv":
-                        menuBottom.setSelectedItemId(R.id.action_tv);
-                        break;
+            if (resultCode == RESULT_TYPE) {
+                if (data != null) {
+                    switch (data.getStringExtra(DetailActivity.EXTRA_TYPE)) {
+                        case "movie":
+                            menuBottom.setSelectedItemId(R.id.action_movie);
+                            break;
+                        case "tv":
+                            menuBottom.setSelectedItemId(R.id.action_tv);
+                            break;
+                    }
                 }
             }
         }

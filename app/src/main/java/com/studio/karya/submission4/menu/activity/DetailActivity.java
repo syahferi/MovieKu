@@ -51,8 +51,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private ContentHelper contentHelper;
     private Content content;
 
-    private Cursor cursor;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +62,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         //content yang berasal dari content provider
         Uri uri = getIntent().getData();
         if (uri != null) {
-            cursor = getContentResolver().query(uri, null, null, null, null);
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
             if (cursor != null) {
                 if (cursor.moveToNext()) {
                     content = new Content(cursor);

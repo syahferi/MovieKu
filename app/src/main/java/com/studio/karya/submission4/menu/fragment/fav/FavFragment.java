@@ -66,41 +66,43 @@ public class FavFragment extends Fragment {
 
     private void checkTypeFragment() {
         String tipe = null;
-        if (getArguments() != null) {
-            tipe = getArguments().getString("type");
-        }
-        if (tipe != null) {
-            if (tipe.equals("movie")) {
-                contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, tipe, "fav");
+        if (getContext() != null) {
+            if (getArguments() != null) {
+                tipe = getArguments().getString("type");
+            }
+            if (tipe != null) {
+                if (tipe.equals("movie")) {
+                    contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, tipe, "fav");
 
-                //contentHelper.getAllContent(TABLE_MOVIE).isEmpty()
-                Cursor cursor = getContext().getContentResolver()
-                        .query(CONTENT_URI_MOVIE, null, null, null, null);
+                    //contentHelper.getAllContent(TABLE_MOVIE).isEmpty()
+                    Cursor cursor = getContext().getContentResolver()
+                            .query(CONTENT_URI_MOVIE, null, null, null, null);
 
-                if (cursor != null) {
-                    ArrayList<Content> contentList = mapCursorToArrayList(cursor);
-                    if (!contentList.isEmpty()) {
-                        anim_no_data.setVisibility(View.GONE);
-                        contentAdapter.setListContent(contentList); //contentHelper.getAllContent(TABLE_MOVIE)
-                    } else {
-                        anim_no_data.setVisibility(View.VISIBLE);
+                    if (cursor != null) {
+                        ArrayList<Content> contentList = mapCursorToArrayList(cursor);
+                        if (!contentList.isEmpty()) {
+                            anim_no_data.setVisibility(View.GONE);
+                            contentAdapter.setListContent(contentList); //contentHelper.getAllContent(TABLE_MOVIE)
+                        } else {
+                            anim_no_data.setVisibility(View.VISIBLE);
+                        }
                     }
-                }
 
-            } else {
-                contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, tipe, "fav");
+                } else {
+                    contentAdapter = new ContentAdapter(getActivity(), FavFragment.this, tipe, "fav");
 
-                //contentHelper.getAllContent(TABLE_MOVIE).isEmpty()
-                Cursor cursor = getContext().getContentResolver()
-                        .query(CONTENT_URI_TV, null, null, null, null);
+                    //contentHelper.getAllContent(TABLE_MOVIE).isEmpty()
+                    Cursor cursor = getContext().getContentResolver()
+                            .query(CONTENT_URI_TV, null, null, null, null);
 
-                if (cursor != null) {
-                    ArrayList<Content> contentList = mapCursorToArrayList(cursor);
-                    if (!contentList.isEmpty()) {
-                        anim_no_data.setVisibility(View.GONE);
-                        contentAdapter.setListContent(contentList); //contentHelper.getAllContent(TABLE_MOVIE)
-                    } else {
-                        anim_no_data.setVisibility(View.VISIBLE);
+                    if (cursor != null) {
+                        ArrayList<Content> contentList = mapCursorToArrayList(cursor);
+                        if (!contentList.isEmpty()) {
+                            anim_no_data.setVisibility(View.GONE);
+                            contentAdapter.setListContent(contentList); //contentHelper.getAllContent(TABLE_MOVIE)
+                        } else {
+                            anim_no_data.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
             }
