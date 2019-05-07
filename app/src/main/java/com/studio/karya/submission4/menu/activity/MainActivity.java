@@ -18,6 +18,7 @@ import com.studio.karya.submission4.menu.activity.search.SearchActivity;
 import com.studio.karya.submission4.menu.fragment.content.ContentFragment;
 import com.studio.karya.submission4.menu.fragment.fav.FavContainerFragment;
 
+import static com.studio.karya.submission4.menu.activity.DetailActivity.RESULT_TYPE;
 import static com.studio.karya.submission4.menu.activity.search.SearchActivity.HINT_SEARCH;
 import static com.studio.karya.submission4.menu.activity.search.SearchActivity.SEARCH_TYPE;
 
@@ -116,6 +117,16 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 101) {
             menuBottom.setSelectedItemId(R.id.action_movie);
+            if (resultCode == RESULT_TYPE){
+                switch (data.getStringExtra(DetailActivity.EXTRA_TYPE)){
+                    case "movie":
+                        menuBottom.setSelectedItemId(R.id.action_movie);
+                        break;
+                    case "tv":
+                        menuBottom.setSelectedItemId(R.id.action_tv);
+                        break;
+                }
+            }
         }
     }
 }

@@ -33,9 +33,11 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     public static final String DATA = "data";
     public static final String TYPE = "type";
+    public static final String EXTRA_TYPE = "extra_type";
     public static final String EXTRA_POSITION = "position";
     public static final String ORIGIN_FRAGMENT = "origin_fragment";
     public static final int RESULT_DELETE = 301;
+    public static final int RESULT_TYPE = 401;
     public static final int REQUEST_UPDATE = 101;
 
     private ImageView imgBackdrop, imgPoster;
@@ -58,8 +60,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         type = getIntent().getStringExtra(TYPE);
         position_item = getIntent().getStringExtra(EXTRA_POSITION);
-
-        Log.d("checkOrigin", getIntent().getStringExtra(ORIGIN_FRAGMENT));
 
         //content yang berasal dari content provider
         Uri uri = getIntent().getData();
@@ -178,7 +178,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private void deleteItem() {
         Intent intent = new Intent();
         intent.putExtra(EXTRA_POSITION, position_item);
-        Log.d("datapost", position_item + " ");
         setResult(RESULT_DELETE, intent);
     }
 
@@ -219,6 +218,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         if (!isFavorite) {
             deleteItem();
         }
+
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_TYPE, type);
+        setResult(RESULT_TYPE, intent);
         super.onBackPressed();
     }
 }

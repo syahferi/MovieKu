@@ -75,7 +75,6 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ContentAdapter.ViewHolder holder, int position) {
 
-        Log.d("Datete", listContent.get(position).getTitleFilm()+" "+listContent.get(position).getTitleTv());
         ConvertDate convertDate = new ConvertDate();
         if (type.equals("movie")) {
             holder.tvTitle.setText(listContent.get(position).getTitleFilm());
