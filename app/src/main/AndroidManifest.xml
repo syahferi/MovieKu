@@ -22,7 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <receiver
+            android:name=".menu.activity.reminder.ReminderReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
         <receiver android:name=".menu.widget.FavoriteWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -61,7 +64,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".menu.activity.MainActivity" />
         </activity>
-
         <activity
             android:name=".menu.activity.DetailActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -69,7 +71,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".menu.activity.MainActivity" />
         </activity>
-
         <activity
             android:name=".menu.activity.MainActivity"
             android:configChanges="orientation|screenSize|locale">
@@ -79,7 +80,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".menu.activity.reminder.ReminderActivity"
             android:configChanges="orientation|screenSize">
@@ -87,7 +87,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".menu.activity.MainActivity" />
         </activity>
-
     </application>
 
 </manifest>
