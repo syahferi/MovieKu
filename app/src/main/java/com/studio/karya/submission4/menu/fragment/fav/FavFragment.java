@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.studio.karya.submission4.R;
 import com.studio.karya.submission4.adapter.ContentAdapter;
-import com.studio.karya.submission4.db.DDL.DatabaseContract;
 import com.studio.karya.submission4.model.Content;
 
 import java.util.ArrayList;
@@ -80,10 +79,12 @@ public class FavFragment extends Fragment {
 
                 if (cursor != null) {
                     ArrayList<Content> contentList = mapCursorToArrayList(cursor);
-                    anim_no_data.setVisibility(View.GONE);
-                    contentAdapter.setListContent(contentList); //contentHelper.getAllContent(TABLE_MOVIE)
-                } else {
-                    anim_no_data.setVisibility(View.VISIBLE);
+                    if (!contentList.isEmpty()) {
+                        anim_no_data.setVisibility(View.GONE);
+                        contentAdapter.setListContent(contentList); //contentHelper.getAllContent(TABLE_MOVIE)
+                    } else {
+                        anim_no_data.setVisibility(View.VISIBLE);
+                    }
                 }
 
             } else {
@@ -93,15 +94,13 @@ public class FavFragment extends Fragment {
                 Cursor cursor = getContext().getContentResolver()
                         .query(CONTENT_URI_TV, null, null, null, null);
 
-                if (cursor != null && cursor.moveToNext()) {
-
+                if (cursor != null) {
                     ArrayList<Content> contentList = mapCursorToArrayList(cursor);
-
-                    if (cursor == null) {
-                        anim_no_data.setVisibility(View.VISIBLE);
-                    } else {
+                    if (!contentList.isEmpty()) {
                         anim_no_data.setVisibility(View.GONE);
-                        contentAdapter.setListContent(contentList); //contentHelper.getAllContent(TABLE_TV)
+                        contentAdapter.setListContent(contentList); //contentHelper.getAllContent(TABLE_MOVIE)
+                    } else {
+                        anim_no_data.setVisibility(View.VISIBLE);
                     }
                 }
             }

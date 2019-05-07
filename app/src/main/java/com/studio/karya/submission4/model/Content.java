@@ -168,6 +168,8 @@ public class Content implements Parcelable {
         this.backdropPath = backdropPath;
         this.overview = overview;
         this.releaseDate = releaseDate;
+        this.firstAirDateTv = releaseDate;
+        this.titleTv = titleFilm;
     }
 
     public Content(Cursor cursor) {
@@ -180,6 +182,7 @@ public class Content implements Parcelable {
         this.backdropPath = getColumnString(cursor, DatabaseContract.TableColumns.BACKDROP_POSTER);
         this.overview = getColumnString(cursor, DatabaseContract.TableColumns.OVERVIEW);
         this.releaseDate = getColumnString(cursor, DatabaseContract.TableColumns.RELEASE_DATE);
+        this.firstAirDateTv = getColumnString(cursor, DatabaseContract.TableColumns.RELEASE_DATE);
     }
 
     public Content(Parcel in) {

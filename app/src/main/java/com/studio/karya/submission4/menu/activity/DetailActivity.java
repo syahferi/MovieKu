@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -71,8 +70,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                     content = new Content(cursor);
                 }
                 cursor.close();
-            } else {
-                Toast.makeText(this, "data kosong", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -130,7 +127,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         } else {
             tvTitle.setText(content.getTitleTv());
         }
-
+        Log.d("check_data", content.getPopularity()+" "+content.getVoteCount()+" "+content.getVoteAverage());
         tvPopularity.setText(content.getPopularity());
         tvVoteCount.setText(content.getVoteCount());
         tvVoteAvg.setText(content.getVoteAverage());

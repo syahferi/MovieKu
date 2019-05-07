@@ -3,6 +3,7 @@ package com.studio.karya.submission4.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,6 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     }
 
     public void setListContent(ArrayList<Content> listContent) {
-
         if (listContent.size() > 0) {
             this.listContent = listContent;
         }
@@ -75,8 +75,8 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ContentAdapter.ViewHolder holder, int position) {
 
+        Log.d("Datete", listContent.get(position).getTitleFilm()+" "+listContent.get(position).getTitleTv());
         ConvertDate convertDate = new ConvertDate();
-
         if (type.equals("movie")) {
             holder.tvTitle.setText(listContent.get(position).getTitleFilm());
             holder.tvTitleDate.setText(activity.getString(R.string.release_date));

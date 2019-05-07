@@ -7,6 +7,7 @@ import com.studio.karya.submission4.model.Content;
 import java.util.ArrayList;
 
 import static android.provider.BaseColumns._ID;
+import static com.studio.karya.submission4.db.DDL.DatabaseContract.TABLE_MOVIE;
 import static com.studio.karya.submission4.db.DDL.DatabaseContract.TableColumns.BACKDROP_POSTER;
 import static com.studio.karya.submission4.db.DDL.DatabaseContract.TableColumns.ID_CONTENT;
 import static com.studio.karya.submission4.db.DDL.DatabaseContract.TableColumns.OVERVIEW;
@@ -32,6 +33,7 @@ public class MappingHelper {
             String popularity = contentCursor.getString(contentCursor.getColumnIndexOrThrow(POPULARITY));
             String voteCount = contentCursor.getString(contentCursor.getColumnIndexOrThrow(VOTE_COUNT));
             String voteAvg = contentCursor.getString(contentCursor.getColumnIndexOrThrow(VOTE_AVG));
+
             contentList.add(new Content(id, voteCount, voteAvg, title, popularity, poster, backdropPoster, overview, releaseDate));
         }
         return contentList;
