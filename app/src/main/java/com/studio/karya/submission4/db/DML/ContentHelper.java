@@ -160,7 +160,7 @@ public class ContentHelper {
                 , _ID + " ASC");
     }
 
-    public long insertProvider(ContentValues values) {
+    /*public long insertProvider(ContentValues values) {
         return database.insert(TABLE_MOVIE, null, values);
     }
 
@@ -170,5 +170,5 @@ public class ContentHelper {
 
     public int deleteProvider(String id) {
         return database.delete(TABLE_MOVIE, _ID + " = ?", new String[]{id});
-    }
+    }*/
 }

@@ -102,10 +102,10 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, SearchActivity.class);
                 if (position_menu == 0) {
                     intent.putExtra(SEARCH_TYPE, "movie");
-                    intent.putExtra(HINT_SEARCH, "Search movie");
+                    intent.putExtra(HINT_SEARCH, getString(R.string.hint_search_movie));
                 } else {
                     intent.putExtra(SEARCH_TYPE, "tv");
-                    intent.putExtra(HINT_SEARCH, "Search tv");
+                    intent.putExtra(HINT_SEARCH, getString(R.string.hint_search_tv));
                 }
                 startActivity(intent);
                 break;

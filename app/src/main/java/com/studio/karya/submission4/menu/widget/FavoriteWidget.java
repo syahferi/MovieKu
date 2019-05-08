@@ -7,10 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.studio.karya.submission4.R;
 import com.studio.karya.submission4.menu.activity.DetailActivity;
@@ -40,7 +37,7 @@ public class FavoriteWidget extends AppWidgetProvider {
                 Intent moveDetail = new Intent(context, DetailActivity.class);
                 moveDetail.putExtra(DetailActivity.TYPE, intent.getStringExtra(TYPE_DATA));
                 moveDetail.putExtra(DetailActivity.DATA, content);
-                moveDetail.putExtra(DetailActivity.EXTRA_POSITION, intent.getIntExtra(EXTRA_ITEM,0));
+                moveDetail.putExtra(DetailActivity.EXTRA_POSITION, intent.getIntExtra(EXTRA_ITEM, 0));
                 context.startActivity(moveDetail);
             }
         }

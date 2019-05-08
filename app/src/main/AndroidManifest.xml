@@ -22,10 +22,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <receiver
             android:name=".menu.activity.reminder.ReminderReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
+
         <receiver android:name=".menu.widget.FavoriteWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

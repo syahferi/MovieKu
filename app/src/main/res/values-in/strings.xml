@@ -6,8 +6,7 @@
     <string name="favorite">Favorit</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="change_langauge">ganti bahasa</string>
+    <string name="change_langauge">Ganti Bahasa</string>
     <string name="img_poster">img_poster</string>
     <string name="release_date">Tanggal Tayang</string>
     <string name="first_air_date">Pertama Kali Tayang</string>
@@ -15,5 +14,17 @@
     <string name="title_popularity">Popularitas</string>
     <string name="vote_count">Jumlah Vote</string>
     <string name="vote_average">Rata-rata Vote</string>
-    <string name="msg_no_data">Tidak ada data</string>
+    <string name="search">mencari</string>
+    <string name="no_data">Maaf bro, tidak ada data</string>
+    <string name="appwidget_text">Film Favorit</string>
+    <string name="reminder">Pengingat</string>
+    <string name="release_reminder">Pengingat Harian Tayang Hari Ini</string>
+    <string name="sub_msg_release_reminder">Pengingat yang menampilkan tayang hari ini</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="sub_msg_daily_reminder">Pengingat untuk kembali ke aplikasi</string>
+    <string name="hint_search_movie">Cari Film</string>
+    <string name="hint_search_tv">Cari TV</string>
+    <string name="toolbar_reminder">Pengingat</string>
+    <string name="title_notif">MovieKu</string>
+    <string name="sub_msg_notif">MovieKu kangen kamu :(</string>
 </resources>

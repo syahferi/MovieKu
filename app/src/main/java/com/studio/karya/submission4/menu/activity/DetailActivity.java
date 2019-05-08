@@ -125,7 +125,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         } else {
             tvTitle.setText(content.getTitleTv());
         }
-        Log.d("check_data", content.getPopularity()+" "+content.getVoteCount()+" "+content.getVoteAverage());
+        Log.d("check_data", content.getPopularity() + " " + content.getVoteCount() + " " + content.getVoteAverage());
         tvPopularity.setText(content.getPopularity());
         tvVoteCount.setText(content.getVoteCount());
         tvVoteAvg.setText(content.getVoteAverage());
