@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ContentFragment();
                         fragment.setArguments(bundle);
                         loadFragment(fragment);
+                        invalidateOptionsMenu();
                         break;
 
                     case R.id.action_tv:
@@ -62,10 +63,13 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ContentFragment();
                         fragment.setArguments(bundle);
                         loadFragment(fragment);
+                        invalidateOptionsMenu();
                         break;
 
                     case R.id.action_fav:
+                        position_menu = 2;
                         loadFragment(favFragment);
+                        invalidateOptionsMenu();
                         break;
                 }
                 return true;
@@ -87,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_toolbar, menu);
 
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        if (position_menu == 2) {
+            menuItem.setVisible(false);
+        } else {
+            menuItem.setVisible(true);
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -103,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 if (position_menu == 0) {
                     intent.putExtra(SEARCH_TYPE, "movie");
                     intent.putExtra(HINT_SEARCH, getString(R.string.hint_search_movie));
-                } else {
+                } else if (position_menu == 1) {
                     intent.putExtra(SEARCH_TYPE, "tv");
                     intent.putExtra(HINT_SEARCH, getString(R.string.hint_search_tv));
                 }
