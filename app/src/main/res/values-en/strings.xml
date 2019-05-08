@@ -27,4 +27,6 @@
     <string name="toolbar_reminder">Reminder</string>
     <string name="title_notif">MovieKu</string>
     <string name="sub_msg_notif">MovieKu is missing you :(</string>
+    <string name="toast_alarm">Alarm inactive</string>
+    <string name="toast_alarm_active">Alarm active</string>
 </resources>

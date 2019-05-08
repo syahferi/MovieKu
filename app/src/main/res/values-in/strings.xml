@@ -27,4 +27,6 @@
     <string name="toolbar_reminder">Pengingat</string>
     <string name="title_notif">MovieKu</string>
     <string name="sub_msg_notif">MovieKu kangen kamu :(</string>
+    <string name="toast_alarm">Alarm tidak aktif</string>
+    <string name="toast_alarm_active">Alarm aktif</string>
 </resources>

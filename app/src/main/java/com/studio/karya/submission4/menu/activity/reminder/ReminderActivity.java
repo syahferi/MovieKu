@@ -3,9 +3,9 @@ package com.studio.karya.submission4.menu.activity.reminder;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.studio.karya.submission4.R;
 import com.studio.karya.submission4.utils.SessionManager;
@@ -46,10 +46,12 @@ public class ReminderActivity extends AppCompatActivity {
                 if (isChecked) {
                     sessionManager.setDailyReminder(true);
                     reminderReceiver.setReminder(getApplicationContext(), DAILY_REMINDER, DAILY_REMINDER_TIME, getResources().getString(R.string.title_notif), getResources().getString(R.string.sub_msg_notif));
+                    Toast.makeText(ReminderActivity.this, getResources().getString(R.string.toast_alarm_active), Toast.LENGTH_SHORT).show();
                 } else {
                     //cancel reminder
                     sessionManager.setDailyReminder(false);
                     reminderReceiver.cancelAlarm(getApplicationContext(), DAILY_REMINDER);
+                    Toast.makeText(ReminderActivity.this, getResources().getString(R.string.toast_alarm), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -60,10 +62,12 @@ public class ReminderActivity extends AppCompatActivity {
                 if (isChecked) {
                     sessionManager.setReleaseReminder(true);
                     reminderReceiver.setReminder(getApplicationContext(), RELEASE_REMINDER, RELEASE_REMINDER_TIME, "", "");
+                    Toast.makeText(ReminderActivity.this, getResources().getString(R.string.toast_alarm_active), Toast.LENGTH_SHORT).show();
                 } else {
                     //cancel reminder
                     sessionManager.setReleaseReminder(false);
                     reminderReceiver.cancelAlarm(getApplicationContext(), RELEASE_REMINDER);
+                    Toast.makeText(ReminderActivity.this, getResources().getString(R.string.toast_alarm), Toast.LENGTH_SHORT).show();
                 }
             }
         });
